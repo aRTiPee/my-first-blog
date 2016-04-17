@@ -1,33 +1,55 @@
 <html>
     <head>
-        <title>aRTiPee's blog</title>
+        <title>aRTiPee's MCU - Home</title>
     </head>
     	<div>
-		    <h1>My First Blog :)</h1>
+		    <h1><center>Marvel Cinematic Universe</center></h1>
 		</div>
     <body>
-        <p>Hi there! Testing</p>
-        <h1>QWERTY Testing</h1>
-        <h4>ASDFGH Testing</h4>
-        <p>It works! Testing</p>
-    </body>
-    <h1>Sample Testing</h1>
+    	{%for post in posts%}
+		    <div>
+		    	<center>
+        			<h2><a href="https://en.wikipedia.org/wiki/Marvel_Cinematic_Universe">{{ post.title }}</a></h2>
+        			<p>{{ post.text|linebreaks }}</p>
+		    	</center>
+		    	<br>
+		    	<br>
+		    	<p><em>Author: </em>{{post.author}}</p>
+		    	<p><em>Published: </em>{{ post.published_date }}</p>
+		    </div>
+		{%endfor%}
     <div>
-	    <h3>Third Header Testing</h3>
+	    <h3><center><em>WATCH CAPTAIN AMERICA: CIVIL WAR IN IMAX ON APRIL 27!!!! DONT MISS THE BEST MOVIE OF 2016</em></center></h3>
 	    <body>
-	    	<ul>
-	    		<li>
-	    			<a href='http://www.twitter.com/artipee'>Twitter</a>
-	    		</li>
-	    		<li>
-	    			<a href='http://www.instagram.com/artipee'>Instagram</a>
-	    		</li>
-	    	</ul>
-
-	        <p><strong>Hi there! Testing</strong>
+	    	<center>
+	    		<ul>
+		    		<li>
+		    			Follow me on
+		    			<a href='http://www.twitter.com/'>Twitter</a>:
+		    			<a href='http://www.twitter.com/aRTiPee'>aRTiPee</a>
+		    		</li>
+		    		<li>
+		    			Follow me on
+		    			<a href='http://www.instagram.com/'>Instagram</a>:
+		    			<a href='http://www.instagram.com/artipee'>artipee</a>
+		    		</li>
+		    		<li>
+		    			Add me on
+		    			<a href='http://www.steamcommunity.com/'>Steam</a>:
+		    			<a href='http://www.steamcommunity.com/id/aRTiPee'>aRTiPee</a>
+		    		</li>
+		    		<li>
+		    			Add me on
+		    			<a href='http://www.facebook.com/'>Facebook</a>:
+		    			<a href='http://www.facebook.com/romantristanpol'>romantristanpol</a>
+		    		</li>
+	    		</ul>
+		    </center>
+		    <br>
+		    <br>
+		    <br>
+	        <p><strong>Author:</strong>
 	        <br><em>Roman Tristan Pol</em></p>
-	        <p>My <a href="http://www.facebook.com/romantristanpol">Facebook </a>account.</p>
-	        <p>It works! Testing</p>
 	    </body>
 	</div>
 </html>
