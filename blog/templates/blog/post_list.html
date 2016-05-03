@@ -1,55 +1,56 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>aRTiPee's MCU - Home</title>
-    </head>
-    	<div>
-		    <h1><center>Marvel Cinematic Universe</center></h1>
-		</div>
-    <body>
-    	{%for post in posts%}
-		    <div>
-		    	<center>
-        			<h2><a href="https://en.wikipedia.org/wiki/Marvel_Cinematic_Universe">{{ post.title }}</a></h2>
-        			<p>{{ post.text|linebreaks }}</p>
-		    	</center>
-		    	<br>
-		    	<br>
-		    	<p><em>Author: </em>{{post.author}}</p>
-		    	<p><em>Published: </em>{{ post.published_date }}</p>
-		    </div>
-		{%endfor%}
-    <div>
-	    <h3><center><em>WATCH CAPTAIN AMERICA: CIVIL WAR IN IMAX ON APRIL 27!!!! DONT MISS THE BEST MOVIE OF 2016</em></center></h3>
-	    <body>
-	    	<center>
-	    		<ul>
-		    		<li>
-		    			Follow me on
-		    			<a href='http://www.twitter.com/'>Twitter</a>:
-		    			<a href='http://www.twitter.com/aRTiPee'>aRTiPee</a>
-		    		</li>
-		    		<li>
-		    			Follow me on
-		    			<a href='http://www.instagram.com/'>Instagram</a>:
-		    			<a href='http://www.instagram.com/artipee'>artipee</a>
-		    		</li>
-		    		<li>
-		    			Add me on
-		    			<a href='http://www.steamcommunity.com/'>Steam</a>:
-		    			<a href='http://www.steamcommunity.com/id/aRTiPee'>aRTiPee</a>
-		    		</li>
-		    		<li>
-		    			Add me on
-		    			<a href='http://www.facebook.com/'>Facebook</a>:
-		    			<a href='http://www.facebook.com/romantristanpol'>romantristanpol</a>
-		    		</li>
-	    		</ul>
-		    </center>
-		    <br>
-		    <br>
-		    <br>
-	        <p><strong>Author:</strong>
-	        <br><em>Roman Tristan Pol</em></p>
-	    </body>
-	</div>
+<head>
+	<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	<title></title>
+</head>
+<body>
+	<script>
+		var dataArray = [1, 7, 3,10,5,6,4,3,8,4,10,6];
+		var scaler = d3.scale.linear()
+				.domain([0, d3.max(dataArray)])
+				.range([0, 700]);
+
+		var scaler2 = d3.scale.linear()
+				.domain([d3.max(dataArray), 0])
+				.range([0, 700]);
+		var colors = d3.scale.linear()
+			.domain([0, d3.max(dataArray)])
+			.range(['black','red'])
+        var colorsStroke = d3.scale.linear()
+            .domain([0, d3.max(dataArray)])
+            .range(['red','black'])
+
+		var yaxis = d3.svg.axis().scale(scaler2)
+			.orient("left")
+			.ticks(dataArray.length);
+		var xaxis = d3.svg.axis().scale(scaler)
+			.ticks(dataArray.length);
+
+		var canvas = d3.select("body").append("svg")
+				.attr("width", 1500)
+				.attr("height", 900);
+		canvas.append("g")
+			.attr("transform", "translate(30, 30)")
+			.call(yaxis);
+		var bars = canvas.selectAll('rect')
+				.data(dataArray)
+				.enter()
+					.append("g");
+		bars.append("rect")
+				.attr("x", function(d, i){ return (i+1)*100; })
+				.attr("y", function(d){ return 730; })
+				.attr("ry", 5)
+				.attr("fill", function(d) {return colors(d);})
+                .attr("stroke", function(d) {return colorsStroke(d);})
+				.attr("width", 50)
+				.attr("height", 0)
+				.transition()
+				.delay (function(d, i) { return i*300})
+				.duration (300)
+				.attr("y", function(d){ return 730-(scaler(d)); })
+				.attr("height", function(d){ return scaler(d);});
+
+	</script>
+</body>
 </html>
